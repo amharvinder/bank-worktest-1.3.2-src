@@ -81,7 +81,7 @@ public abstract class BaseModel implements Serializable {
 		this.modifiedOn = modifiedOn;
 	}
 
-	@Override
+	/*@Override
 	public int hashCode() {
 		return 31;
 	}
@@ -96,6 +96,6 @@ public abstract class BaseModel implements Serializable {
 			return false;
 		BaseModel other = (BaseModel) obj;
 		return Objects.equals(getId(), other.id);
-	}
+	}*/
 	
 }

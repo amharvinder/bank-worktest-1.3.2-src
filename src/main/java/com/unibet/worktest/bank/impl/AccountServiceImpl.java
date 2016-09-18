@@ -2,8 +2,6 @@ package com.unibet.worktest.bank.impl;
 
 import java.util.Currency;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.unibet.worktest.bank.AccountNotFoundException;
@@ -13,18 +11,25 @@ import com.unibet.worktest.bank.Money;
 import com.unibet.worktest.bank.dao.AccountDao;
 import com.unibet.worktest.bank.model.Account;
 
-@Service
-@Transactional
+/*@Service*/
+/*@Transactional*/
 public class AccountServiceImpl implements AccountService {
 	
-	@Autowired
+	/*@Autowired*/
 	private AccountDao accountDao;
+	
+	public AccountServiceImpl() {}
+	
+	public AccountServiceImpl(AccountDao accountDao) {
+		this.accountDao = accountDao;
+	}
 
 	@Override
 	public void createAccount(String accountRef, Money amount) {
 		try {
 			accountDao.createAccount(accountRef, amount);
 		} catch (Exception e) {
+			e.printStackTrace();
 			throw new InfrastructureException("Some error occured while creating account");
 		}
 	}
@@ -41,6 +46,7 @@ public class AccountServiceImpl implements AccountService {
 			
 			return new Money(account.getBalance(), Currency.getInstance(account.getCurrency()));
 		} catch (Exception e) {
+			e.printStackTrace();
 			throw new InfrastructureException("Some error occured while retrieving account balance");
 		}	
 	}

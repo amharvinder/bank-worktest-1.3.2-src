@@ -3,14 +3,13 @@ package com.unibet.worktest.bank.model;
 import java.math.BigDecimal;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -29,18 +28,17 @@ public class Account extends BaseModel {
 	@Column(name="reference")
 	private String reference;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="user_id")
-	private User user;
-	
 	@Column(name="balance")
 	private BigDecimal balance;
 	
 	@Column(name="currency")
 	private String currency;
 	
-	@OneToMany(fetch=FetchType.LAZY, mappedBy="account")
-	private Set<MoneyTransaction> transactions;
+	@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL, mappedBy="debitAccount")
+	private Set<MoneyTransaction> debitTransactions;
+	
+	@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL, mappedBy="creditAccount")
+	private Set<MoneyTransaction> creditTransactions;
 	
 	public Account() {}
 	
@@ -83,21 +81,21 @@ public class Account extends BaseModel {
 	public void setCurrency(String currency) {
 		this.currency = currency;
 	}
+
+	public Set<MoneyTransaction> getDebitTransactions() {
+		return debitTransactions;
+	}
+
+	public void setDebitTransactions(Set<MoneyTransaction> debitTransactions) {
+		this.debitTransactions = debitTransactions;
+	}
 	
-	public User getUser() {
-		return user;
+	public Set<MoneyTransaction> getCreditTransactions() {
+		return creditTransactions;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
-	}
-
-	public Set<MoneyTransaction> getTransactions() {
-		return transactions;
-	}
-
-	public void setTransactions(Set<MoneyTransaction> transactions) {
-		this.transactions = transactions;
+	public void setCreditTransactions(Set<MoneyTransaction> creditTransactions) {
+		this.creditTransactions = creditTransactions;
 	}
 
 	@Override

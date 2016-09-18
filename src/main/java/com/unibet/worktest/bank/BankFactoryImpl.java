@@ -1,34 +1,43 @@
 package com.unibet.worktest.bank;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
+import com.unibet.worktest.bank.dao.impl.AccountDaoImpl;
+import com.unibet.worktest.bank.dao.impl.MoneyTransactionDaoImpl;
+import com.unibet.worktest.bank.dao.impl.MoneyTransactionLegDaoImpl;
 import com.unibet.worktest.bank.impl.AccountServiceImpl;
 import com.unibet.worktest.bank.impl.TransferServiceImpl;
 
-@Component
+/*@Component*/
 public class BankFactoryImpl implements BankFactory {
-
-	@Autowired
-	private AccountService accountService;
 	
-	@Autowired
-	private TransferService transferService;
+	/*static { 
+		System.out.println("Initializing BankFactoryImpl");
+		new Application();
+	}*/
+	
+	/*@Autowired
+	private AccountService accountService;*/
 
 	@Override
 	public AccountService getAccountService() {
-		return accountService;
+		System.out.println("accountSrevice");
+		/*if (accountService == null) {
+			throw new NullPointerException("accountService object is null");
+		}*/
+		return new AccountServiceImpl(new AccountDaoImpl());
 	}
 
 	@Override
 	public TransferService getTransferService() {
-		return transferService;
+		System.out.println("TransferSrevice");
+		return new TransferServiceImpl(new MoneyTransactionDaoImpl(), new AccountDaoImpl());
 	}
 
 	@Override
 	public void setupInitialData() {
-		accountService = new AccountServiceImpl();
-		transferService = new TransferServiceImpl();
+		System.out.println("Setting up Initial Data");
+		new MoneyTransactionLegDaoImpl().deleteAll();
+		new MoneyTransactionDaoImpl().deleteAll();
+		new AccountDaoImpl().deleteAll();
 	}
 
 }

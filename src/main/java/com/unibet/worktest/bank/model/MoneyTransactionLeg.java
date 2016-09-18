@@ -2,12 +2,12 @@ package com.unibet.worktest.bank.model;
 
 import java.math.BigDecimal;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -34,7 +34,7 @@ public class MoneyTransactionLeg extends BaseModel {
 	@Column(name="currency")
 	private String currency;
 	
-	@ManyToOne
+	@ManyToOne(cascade={CascadeType.REFRESH, CascadeType.MERGE})
 	@JoinColumn(name="account_id")
 	private Account account;
 	
@@ -89,5 +89,12 @@ public class MoneyTransactionLeg extends BaseModel {
 	public void setAccount(Account account) {
 		this.account = account;
 	}
+
+	@Override
+	public String toString() {
+		return "MoneyTransactionLeg [id=" + id + ", status=" + status + ", moneyTransaction=" + moneyTransaction.getId() + ", amount=" + amount
+				+ ", currency=" + currency + ", account=" + account.getId() + ", balance: " + account.getBalance() + "]";
+	}
+	
 	
 }

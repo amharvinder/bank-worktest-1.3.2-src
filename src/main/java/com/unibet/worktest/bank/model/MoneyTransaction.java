@@ -23,8 +23,12 @@ public class MoneyTransaction extends BaseModel{
 	private static final long serialVersionUID = 2745611270233240167L;
 
 	@ManyToOne
-	@JoinColumn(name="account_id")
-	private Account account;
+	@JoinColumn(name="debit_account_id")
+	private Account debitAccount;
+	
+	@ManyToOne
+	@JoinColumn(name="credit_account_id")
+	private Account creditAccount;
 	
 	@Column(name="type")
 	@Enumerated(EnumType.STRING)
@@ -38,19 +42,27 @@ public class MoneyTransaction extends BaseModel{
 	
 	public MoneyTransaction() {}
 	
-	public MoneyTransaction(Account account, TransactionType type, String reference) {
+	public MoneyTransaction(String reference) {
 		super();
-		this.account = account;
-		this.type = type;
+		// Since we aren't getting Transaction type for now, setting default value
+		this.type = TransactionType.RTGS;
 		this.reference = reference;
 	}
 
-	public Account getAccount() {
-		return account;
+	public Account getDebitAccount() {
+		return debitAccount;
 	}
 
-	public void setAccount(Account account) {
-		this.account = account;
+	public void setDebitAccount(Account debitAccount) {
+		this.debitAccount = debitAccount;
+	}
+
+	public Account getCreditAccount() {
+		return creditAccount;
+	}
+
+	public void setCreditAccount(Account creditAccount) {
+		this.creditAccount = creditAccount;
 	}
 
 	public TransactionType getType() {
@@ -76,11 +88,37 @@ public class MoneyTransaction extends BaseModel{
 	public void setMoneyTransactionLegs(Set<MoneyTransactionLeg> moneyTransactionLegs) {
 		this.moneyTransactionLegs = moneyTransactionLegs;
 	}
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + ((reference == null) ? 0 : reference.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		MoneyTransaction other = (MoneyTransaction) obj;
+		if (reference == null) {
+			if (other.reference != null)
+				return false;
+		} else if (!reference.equals(other.reference))
+			return false;
+		return true;
+	}
 
 	@Override
 	public String toString() {
-		return "MoneyTransaction [id=" + id + ", account=" + account + ", type=" + type
-				+ ", reference=" + reference + "]";
+		return "MoneyTransaction [id=" + id + ", debitAccount=" + debitAccount.getId() 
+				+ ", creditAccount=" + creditAccount.getId() + ", type=" + type
+				+ ", reference=" + reference + ", transactionlegs" + moneyTransactionLegs +"]";
 	}
 	
 }

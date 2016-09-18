@@ -2,7 +2,7 @@ package com.unibet.worktest.bank.dao;
 
 import com.unibet.worktest.bank.model.MoneyTransaction;
 
-public interface TransferDao {
+public interface MoneyTransactionDao extends BaseDao<MoneyTransaction> {
 
 	void transferFunds(MoneyTransaction moneyTransaction);
 

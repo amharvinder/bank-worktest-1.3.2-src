@@ -65,6 +65,11 @@
             <version>4.11</version>
             <scope>test</scope>
         </dependency>
+		<!-- <dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-test</artifactId>
+		    <version>${springframework.version}</version>
+		</dependency> -->
         
         <!-- ======================================================== -->
         <!-- Spring Dependency -->
@@ -72,25 +77,25 @@
         
         <dependency>
             <groupId>org.springframework</groupId>
-            <artifactId>spring-webmvc</artifactId>
+            <artifactId>spring-context</artifactId>
             <version>${springframework.version}</version>
         </dependency>
-        <dependency>
+        <!-- <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-tx</artifactId>
             <version>${springframework.version}</version>
-        </dependency>
+        </dependency> -->
  
-        <dependency>
+        <!-- <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
             <version>${jackson.version}</version>
-        </dependency>
-        <dependency>
+        </dependency> -->
+        <!-- <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
             <version>3.1.0</version>
-        </dependency>
+        </dependency> -->
         
         <!-- Spring ORM support -->
 		<dependency>
@@ -111,11 +116,11 @@
 			<artifactId>hibernate-entitymanager</artifactId>
 			<version>${hibernate.version}</version>
 		</dependency>
-		<dependency>
+		<!-- <dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
 			<version>${hibernate.version}</version>
-		</dependency>
+		</dependency> -->
         
         <!-- Apache Commons -->   
         <dependency>
@@ -123,7 +128,14 @@
 			<artifactId>commons-lang</artifactId>
 			<version>2.6</version>
 		</dependency> 
-        
+		
+		<!-- Logging -->
+  		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+			<scope>compile</scope>
+		</dependency>
     </dependencies>
 
     <build>
@@ -157,8 +169,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>2.5.1</version>
                 <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
+                    <source>1.8</source>
+                    <target>1.8</target>
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
