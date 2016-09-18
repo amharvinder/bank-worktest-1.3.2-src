@@ -11,11 +11,8 @@ import com.unibet.worktest.bank.Money;
 import com.unibet.worktest.bank.dao.AccountDao;
 import com.unibet.worktest.bank.model.Account;
 
-/*@Service*/
-/*@Transactional*/
 public class AccountServiceImpl implements AccountService {
 	
-	/*@Autowired*/
 	private AccountDao accountDao;
 	
 	public AccountServiceImpl() {}

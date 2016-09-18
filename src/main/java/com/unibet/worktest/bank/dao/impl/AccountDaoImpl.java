@@ -9,8 +9,6 @@ import com.unibet.worktest.bank.dao.AccountDao;
 import com.unibet.worktest.bank.model.Account;
 import com.unibet.worktest.bank.model.MoneyTransaction;
 
-/*@Repository*/
-/*@Transactional*/
 public class AccountDaoImpl extends BaseDaoImpl<Account> implements AccountDao {
 	
 	private final Logger logger = Logger.getLogger(AccountDaoImpl.class);

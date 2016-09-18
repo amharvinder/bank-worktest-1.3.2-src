@@ -4,7 +4,7 @@ import java.util.Set;
 
 import javax.persistence.EntityManager;
 
-import com.unibet.worktest.Application;
+import com.unibet.worktest.BankSession;
 import com.unibet.worktest.bank.dao.MoneyTransactionDao;
 import com.unibet.worktest.bank.model.MoneyTransaction;
 import com.unibet.worktest.bank.model.MoneyTransactionLeg;
@@ -19,8 +19,8 @@ public class MoneyTransactionDaoImpl extends BaseDaoImpl<MoneyTransaction> imple
 	public void transferFunds(MoneyTransaction moneyTransaction) {
 		Set<MoneyTransactionLeg> transactionlegs = moneyTransaction.getMoneyTransactionLegs();
 		try {
-			EntityManager em = Application.getEntityManager();
-			Application.beginTransaction();
+			EntityManager em = BankSession.getEntityManager();
+			BankSession.beginTransaction();
 
 			for (MoneyTransactionLeg moneyTransactionLeg : transactionlegs) {
 				System.out.println("transferFunds: merging account" + moneyTransactionLeg.getAccount());
@@ -28,9 +28,9 @@ public class MoneyTransactionDaoImpl extends BaseDaoImpl<MoneyTransaction> imple
 			}
 		
 			em.persist(moneyTransaction);
-			Application.commit();
+			BankSession.commit();
 		} catch (RuntimeException e) {
-			Application.rollback();
+			BankSession.rollback();
 			
 			throw e;
 		}

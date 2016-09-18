@@ -19,7 +19,6 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
  * The Class HibernateConfiguration defines all the hibernate configuration.
  */
 @Configuration
-//@EnableTransactionManagement
 @ComponentScan({ "com.unibet.worktest" })
 @PropertySource(value = { "classpath:application.properties" })
 public class HibernateConfiguration {
@@ -41,20 +40,6 @@ public class HibernateConfiguration {
        return em;
     }
     
-    /**
-     * Session factory.
-     *
-     * @return the local session factory bean
-     *//*
-    @Bean
-    public LocalSessionFactoryBean sessionFactory() {
-        LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
-        sessionFactory.setDataSource(dataSource());
-        sessionFactory.setPackagesToScan(new String[] { "com.unibet.worktest.bank.model" });
-        sessionFactory.setHibernateProperties(hibernateProperties());
-        return sessionFactory;
-     }*/
-     
     /**
      * Data source.
      *
@@ -83,27 +68,4 @@ public class HibernateConfiguration {
         return properties;        
     }
      
-    /**
-     * Transaction manager.
-     *
-     * @param s the s
-     * @return the hibernate transaction manager
-     */
-    /*@Bean
-    @Autowired
-    public HibernateTransactionManager transactionManager(SessionFactory s) {
-       HibernateTransactionManager txManager = new HibernateTransactionManager();
-       txManager.setSessionFactory(s);
-       return txManager;
-    }*/
-    
-   /* @Bean
-    @Autowired
-    public PlatformTransactionManager transactionManager(EntityManagerFactory emf){
-       JpaTransactionManager transactionManager = new JpaTransactionManager();
-       transactionManager.setEntityManagerFactory(emf);
-  
-       return transactionManager;
-    }*/
-    
 }

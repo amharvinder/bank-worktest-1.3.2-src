@@ -29,13 +29,10 @@ import com.unibet.worktest.bank.model.MoneyTransaction;
 import com.unibet.worktest.bank.model.MoneyTransactionLeg;
 import com.unibet.worktest.bank.model.TransactionStatus;
 
-/*@Service*/
 public class TransferServiceImpl implements TransferService {
 
-//	@Autowired
 	private MoneyTransactionDao transferDao;
 	
-//	@Autowired
 	private AccountDao accountDao;
 	
 	public TransferServiceImpl() {}
@@ -58,7 +55,6 @@ public class TransferServiceImpl implements TransferService {
 			TransactionAccountDTO transactionAccountDTO = createTransactionAccountDTO(transferRequest, transactionLegs);
 			
 			MoneyTransaction moneyTransaction = transactionAccountDTO.getMoneyTransaction();
-			int i=0;
 			
 			for (TransactionLeg transactionLeg : transactionLegs) {
 				Account account = transactionAccountDTO.getDebitCreditAccount().get(transactionLeg.getAccountRef());
@@ -76,28 +72,15 @@ public class TransferServiceImpl implements TransferService {
 				
 				account.setBalance(newBalance);
 				
-				/*if (money.getAmount().compareTo(BigDecimal.ZERO) < 0) {
-					moneyTransaction.setDebitAccount(account);
-				} else {
-					moneyTransaction.setCreditAccount(account);
-				}*/
-				
-				/*if (transferCurrency == null) {
-					transferCurrency = money.getCurrency().getCurrencyCode();
-				} else if (StringUtils.isEmpty(transferCurrency) || !transferCurrency.equals(money.getCurrency().getCurrencyCode())){
-					throw new IllegalArgumentException("Currencies are not same for transferReference: " + transferRequest.getReference());
-				}*/
-				
 				moneyTransactionLegs.add(
 				new MoneyTransactionLeg(TransactionStatus.COMPLETED, moneyTransaction,
 						money.getAmount(), money.getCurrency().getCurrencyCode(), account));
 				
-				i++;
 			}
 			
 			moneyTransaction.setMoneyTransactionLegs(moneyTransactionLegs);
 
-			System.out.println("Loop ran for" + i + " and Transactions "  + moneyTransactionLegs);
+			System.out.println(" Transactions "  + moneyTransactionLegs);
 			
 			transferDao.transferFunds(moneyTransaction);
 		}  catch (Exception e) {

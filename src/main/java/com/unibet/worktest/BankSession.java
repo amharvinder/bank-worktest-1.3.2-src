@@ -9,7 +9,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 import com.unibet.worktest.configuration.HibernateConfiguration;
 
-public class Application {
+public class BankSession {
 	
 	private static final ApplicationContext context;
 	private static final EntityManagerFactory emf; 
