@@ -2,7 +2,6 @@ package com.unibet.worktest.bank.model;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
@@ -81,21 +80,4 @@ public abstract class BaseModel implements Serializable {
 		this.modifiedOn = modifiedOn;
 	}
 
-	/*@Override
-	public int hashCode() {
-		return 31;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		BaseModel other = (BaseModel) obj;
-		return Objects.equals(getId(), other.id);
-	}*/
-	
 }

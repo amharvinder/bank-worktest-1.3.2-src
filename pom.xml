@@ -65,11 +65,6 @@
             <version>4.11</version>
             <scope>test</scope>
         </dependency>
-		<!-- <dependency>
-		    <groupId>org.springframework</groupId>
-		    <artifactId>spring-test</artifactId>
-		    <version>${springframework.version}</version>
-		</dependency> -->
         
         <!-- ======================================================== -->
         <!-- Spring Dependency -->
@@ -80,22 +75,6 @@
             <artifactId>spring-context</artifactId>
             <version>${springframework.version}</version>
         </dependency>
-        <!-- <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-tx</artifactId>
-            <version>${springframework.version}</version>
-        </dependency> -->
- 
-        <!-- <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>${jackson.version}</version>
-        </dependency> -->
-        <!-- <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <version>3.1.0</version>
-        </dependency> -->
         
         <!-- Spring ORM support -->
 		<dependency>
@@ -104,32 +83,29 @@
 			<version>${springframework.version}</version>
 		</dependency>
 		
-		<!-- <dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-jdbc</artifactId>
-			<version>${spring.version}</version>
-		</dependency> -->
-		
-		<!-- Hibernate -->
+        <!-- ======================================================== -->
+        <!-- Hibernate Dependency -->
+        <!-- ======================================================== -->  
+        	
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
 			<version>${hibernate.version}</version>
 		</dependency>
-		<!-- <dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-core</artifactId>
-			<version>${hibernate.version}</version>
-		</dependency> -->
-        
-        <!-- Apache Commons -->   
+
+        <!-- ======================================================== -->
+        <!-- Commons Dependency -->
+        <!-- ======================================================== -->          
         <dependency>
 			<groupId>commons-lang</groupId>
 			<artifactId>commons-lang</artifactId>
 			<version>2.6</version>
 		</dependency> 
 		
-		<!-- Logging -->
+        <!-- ======================================================== -->
+        <!-- Log4j Dependency -->
+        <!-- ======================================================== -->  
+        
   		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
